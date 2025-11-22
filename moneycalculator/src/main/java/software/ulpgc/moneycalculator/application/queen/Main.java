@@ -9,7 +9,8 @@ public class Main {
                 desktop.moneyDialog(),
                 desktop.currencyDialog(),
                 new WebService.ExchangeRateLoader(),
-                desktop.moneyDisplay()
+                desktop.moneyDisplay(),
+                desktop
         ));
         desktop.setVisible(true);
     }

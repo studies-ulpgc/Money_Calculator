@@ -2,8 +2,10 @@ package software.ulpgc.moneycalculator.application.queen;
 
 import software.ulpgc.moneycalculator.architecture.control.Command;
 import software.ulpgc.moneycalculator.architecture.model.Currency;
+import software.ulpgc.moneycalculator.architecture.model.ExchangeRate;
 import software.ulpgc.moneycalculator.architecture.model.Money;
 import software.ulpgc.moneycalculator.architecture.ui.CurrencyDialog;
+import software.ulpgc.moneycalculator.architecture.ui.ExchangeRateDisplay;
 import software.ulpgc.moneycalculator.architecture.ui.MoneyDialog;
 import software.ulpgc.moneycalculator.architecture.ui.MoneyDisplay;
 
@@ -15,13 +17,14 @@ import java.util.Map;
 
 import static java.awt.FlowLayout.CENTER;
 
-public class Desktop extends JFrame {
+public class Desktop extends JFrame implements ExchangeRateDisplay {
     private final Map<String, Command> commands;
     private final List<Currency> currencies;
     private JTextField inputAmount;
     private JComboBox<Currency> inputCurrency;
     private JTextField outputAmount;
     private JComboBox<Currency> outputCurrency;
+    private JLabel exchangeRateLabel;
 
     public Desktop(List<Currency> currencies) throws HeadlessException {
         this.commands = new HashMap<>();
@@ -43,6 +46,9 @@ public class Desktop extends JFrame {
         panel.add(outputAmount = amountOutput());
         panel.add(outputCurrency = currencySelector());
         panel.add(calculateButton());
+        this.exchangeRateLabel = new JLabel("---");
+        panel.add(new JLabel("Exchange Rate:"));
+        panel.add(exchangeRateLabel);
         return panel;
     }
 
@@ -101,5 +107,10 @@ public class Desktop extends JFrame {
 
     private Currency outputCurrency() {
         return (Currency) outputCurrency.getSelectedItem();
+    }
+
+    @Override
+    public void show(ExchangeRate rate) {
+        exchangeRateLabel.setText(String.valueOf(rate.rate()));
     }
 }

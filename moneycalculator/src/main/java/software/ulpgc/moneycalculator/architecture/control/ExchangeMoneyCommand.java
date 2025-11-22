@@ -5,6 +5,7 @@ import software.ulpgc.moneycalculator.architecture.model.Currency;
 import software.ulpgc.moneycalculator.architecture.model.ExchangeRate;
 import software.ulpgc.moneycalculator.architecture.model.Money;
 import software.ulpgc.moneycalculator.architecture.ui.CurrencyDialog;
+import software.ulpgc.moneycalculator.architecture.ui.ExchangeRateDisplay;
 import software.ulpgc.moneycalculator.architecture.ui.MoneyDialog;
 import software.ulpgc.moneycalculator.architecture.ui.MoneyDisplay;
 
@@ -13,12 +14,14 @@ public class ExchangeMoneyCommand implements Command {
     private final CurrencyDialog currencyDialog;
     private final ExchangeRateLoader exchangeRateLoader;
     private final MoneyDisplay moneyDisplay;
+    private final ExchangeRateDisplay exchangeRateDisplay;
 
-    public ExchangeMoneyCommand(MoneyDialog moneyDialog, CurrencyDialog currencyDialog, ExchangeRateLoader exchangeRateLoader, MoneyDisplay moneyDisplay) {
+    public ExchangeMoneyCommand(MoneyDialog moneyDialog, CurrencyDialog currencyDialog, ExchangeRateLoader exchangeRateLoader, MoneyDisplay moneyDisplay, ExchangeRateDisplay exchangeRateDisplay) {
         this.moneyDialog = moneyDialog;
         this.currencyDialog = currencyDialog;
         this.exchangeRateLoader = exchangeRateLoader;
         this.moneyDisplay = moneyDisplay;
+        this.exchangeRateDisplay = exchangeRateDisplay;
     }
 
     @Override
@@ -30,5 +33,7 @@ public class ExchangeMoneyCommand implements Command {
 
         Money result = new Money(money.amount() * exchangeRate.rate(), currency);
         moneyDisplay.show(result);
+
+        exchangeRateDisplay.show(exchangeRate);
     }
 }

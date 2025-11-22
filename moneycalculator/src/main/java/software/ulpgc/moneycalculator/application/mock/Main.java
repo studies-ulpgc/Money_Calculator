@@ -19,7 +19,8 @@ public class Main {
                 moneyDialog(currencies),
                 currencyDialog(currencies),
                 new MockExchangeRateLoader(),
-                moneyDisplay()
+                moneyDisplay(),
+                exchangeRate -> System.out.println("Rate: " + exchangeRate.rate())
         );
         command.execute();
     }
