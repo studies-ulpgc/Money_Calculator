@@ -25,6 +25,8 @@ public class Desktop extends JFrame implements ExchangeRateDisplay {
     private JTextField outputAmount;
     private JComboBox<Currency> outputCurrency;
     private JLabel exchangeRateLabel;
+    private final ExchangeRatePanel ratePanel = new ExchangeRatePanel();
+    private JLabel dateLabel;
 
     public Desktop(List<Currency> currencies) throws HeadlessException {
         this.commands = new HashMap<>();
@@ -46,9 +48,14 @@ public class Desktop extends JFrame implements ExchangeRateDisplay {
         panel.add(outputAmount = amountOutput());
         panel.add(outputCurrency = currencySelector());
         panel.add(calculateButton());
-        this.exchangeRateLabel = new JLabel("---");
+        this.exchangeRateLabel = new JLabel("0.0");
+        this.dateLabel = new JLabel("---");
+
         panel.add(new JLabel("Exchange Rate:"));
         panel.add(exchangeRateLabel);
+
+        panel.add(new JLabel("Date:"));
+        panel.add(dateLabel);
         return panel;
     }
 
@@ -112,5 +119,6 @@ public class Desktop extends JFrame implements ExchangeRateDisplay {
     @Override
     public void show(ExchangeRate rate) {
         exchangeRateLabel.setText(String.valueOf(rate.rate()));
+        dateLabel.setText(rate.date().toString());
     }
 }
