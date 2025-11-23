@@ -25,7 +25,6 @@ public class Desktop extends JFrame implements ExchangeRateDisplay {
     private JTextField outputAmount;
     private JComboBox<Currency> outputCurrency;
     private JLabel exchangeRateLabel;
-    private final ExchangeRatePanel ratePanel = new ExchangeRatePanel();
     private JLabel dateLabel;
 
     public Desktop(List<Currency> currencies) throws HeadlessException {
