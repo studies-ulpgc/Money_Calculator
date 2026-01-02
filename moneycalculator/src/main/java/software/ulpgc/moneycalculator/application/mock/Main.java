@@ -5,6 +5,7 @@ import software.ulpgc.moneycalculator.architecture.control.ExchangeMoneyCommand;
 import software.ulpgc.moneycalculator.architecture.model.Currency;
 import software.ulpgc.moneycalculator.architecture.model.Money;
 import software.ulpgc.moneycalculator.architecture.ui.CurrencyDialog;
+import software.ulpgc.moneycalculator.architecture.ui.ExchangeRateDisplay;
 import software.ulpgc.moneycalculator.architecture.ui.MoneyDialog;
 import software.ulpgc.moneycalculator.architecture.ui.MoneyDisplay;
 
@@ -20,12 +21,16 @@ public class Main {
                 currencyDialog(currencies),
                 new MockExchangeRateLoader(),
                 moneyDisplay(),
-                exchangeRate -> System.out.println("Rate: " + exchangeRate.rate())
+                exchangeRateDisplay()
         );
         command.execute();
     }
 
     private static MoneyDisplay moneyDisplay() {
+        return System.out::println;
+    }
+
+    private static ExchangeRateDisplay exchangeRateDisplay() {
         return System.out::println;
     }
 
