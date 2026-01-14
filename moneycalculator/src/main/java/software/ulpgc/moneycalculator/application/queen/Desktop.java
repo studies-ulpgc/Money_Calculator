@@ -32,11 +32,11 @@ public class Desktop extends JFrame implements ExchangeRateDisplay {
         this.currencies = currencies;
         setupFrame();
 
-        this.add(getJPanel_principal(), BorderLayout.CENTER);
-        this.add(getJPanel_boton_y_tasas(), BorderLayout.SOUTH);
+        this.add(getJPanelPrincipal(), BorderLayout.CENTER);
+        this.add(getJPanelBotonYTasas(), BorderLayout.SOUTH);
     }
 
-    private JPanel getJPanel_boton_y_tasas() {
+    private JPanel getJPanelBotonYTasas() {
         JPanel footer = new JPanel(new BorderLayout());
         footer.setBackground(Color.WHITE);
         footer.add(createCalculateButton(), BorderLayout.NORTH);
@@ -44,7 +44,7 @@ public class Desktop extends JFrame implements ExchangeRateDisplay {
         return footer;
     }
 
-    private JPanel getJPanel_principal() {
+    private JPanel getJPanelPrincipal() {
         JPanel mainPanel = new JPanel(new GridLayout(2, 2, 20, 10));
         mainPanel.setBorder(new EmptyBorder(20, 30, 10, 30));
         mainPanel.setBackground(Color.WHITE);
